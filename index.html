@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calm | Healthy fine dining in Hitech City, Hyderabad</title>
+<meta name="description" content="Calm is a premium restaurant in Hitech City, Hyderabad serving nutritious vegetarian and non-vegetarian food. Open every day from 5 am to midnight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- EDIT COLOURS HERE ---------- */
+  :root {
+    --stone: #f7f8f5;     /* page background */
+    --mist: #e8eee9;      /* soft section background */
+    --sage: #b7cabd;      /* lines and ripples */
+    --deep: #1d3a37;      /* main dark green, text and buttons */
+    --brass: #8a6a33;     /* accent text */
+    --text: #26302e;
+    --muted: #5d6b67;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Jost", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px; line-height: 1.7; color: var(--text); background: var(--stone);
+  }
+  h1, h2, h3 { font-family: "Newsreader", Georgia, "Times New Roman", serif; font-weight: 400; line-height: 1.12; color: var(--deep); }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- HEADER ---------- */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 26px 0; }
+  .logo { font-family: "Newsreader", Georgia, serif; font-size: 1.6rem; letter-spacing: 0.04em; text-decoration: none; color: var(--deep); }
+  .top nav { display: flex; gap: 30px; font-size: 0.95rem; }
+  .top nav a { text-decoration: none; color: var(--muted); }
+  .top nav a:hover { color: var(--deep); }
+
+  /* ---------- HERO ---------- */
+  .hero { position: relative; overflow: hidden; padding: 70px 0 110px; }
+  .ripples { position: absolute; right: -140px; top: 50%; width: 720px; max-width: 120vw; transform: translateY(-50%); z-index: 0; }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero h1 { font-size: clamp(4.5rem, 16vw, 9.5rem); font-weight: 300; letter-spacing: -0.02em; }
+  .hero .tag { font-family: "Newsreader", Georgia, serif; font-size: clamp(1.4rem, 3.4vw, 2rem); color: var(--deep); margin-top: 6px; max-width: 18ch; line-height: 1.25; }
+  .hero .sub { margin-top: 22px; color: var(--muted); max-width: 44ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+  .btn { display: inline-block; padding: 14px 30px; border-radius: 999px; font-weight: 500; text-decoration: none; border: 1.5px solid var(--deep); }
+  .btn-main { background: var(--deep); color: var(--stone); }
+  .btn-main:hover { background: #12292a; }
+  .btn-alt { color: var(--deep); }
+  .btn-alt:hover { background: var(--mist); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 90px 0; }
+  .soft { background: var(--mist); }
+  h2 { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 14px; }
+  .lead { color: var(--muted); max-width: 54ch; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .about p + p { margin-top: 16px; }
+  .principles { display: grid; gap: 26px; }
+  .principles h3 { font-size: 1.35rem; margin-bottom: 4px; }
+  .principles p { color: var(--muted); font-size: 0.98rem; }
+  .principles > div { border-top: 1px solid var(--sage); padding-top: 18px; }
+
+  /* Menu */
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin: 30px 0 46px; }
+  .filters button {
+    font: inherit; font-size: 0.95rem; padding: 9px 22px; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--deep); border: 1.5px solid var(--sage);
+  }
+  .filters button:hover { border-color: var(--deep); }
+  .filters button[aria-pressed="true"] { background: var(--deep); color: var(--stone); border-color: var(--deep); }
+  .group { margin-bottom: 52px; }
+  .group h3 { font-size: 1.7rem; }
+  .group .when { color: var(--brass); font-size: 0.95rem; margin-bottom: 8px; }
+  .dish { display: grid; grid-template-columns: 22px 88px 1fr auto; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--sage); }
+  .dish[hidden] { display: none; }
+  .dish h4 { font-family: "Newsreader", Georgia, serif; font-weight: 500; font-size: 1.25rem; color: var(--deep); line-height: 1.3; }
+  .dish p { color: var(--muted); font-size: 0.97rem; }
+  .dish .nutri { font-size: 0.88rem; color: var(--brass); margin-top: 2px; }
+  .price { font-family: "Newsreader", Georgia, serif; font-size: 1.2rem; color: var(--deep); white-space: nowrap; }
+  .mark { width: 16px; height: 16px; border: 1.5px solid; margin-top: 7px; display: grid; place-items: center; }
+  .mark::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .mark.veg { color: #2f7a43; }
+  .mark.nonveg { color: #9a3b2b; }
+  .note { margin-top: 10px; color: var(--muted); font-size: 0.9rem; }
+
+  /* ---------- PHOTOS ---------- */
+  /* Each photo sits on a soft tile, so the page still looks finished until you add the real image */
+  .photo {
+    position: relative; overflow: hidden; border-radius: 14px; margin: 0;
+    background: linear-gradient(140deg, var(--sage), var(--mist));
+    display: grid; place-items: center; color: var(--deep); font-size: 0.9rem; opacity: 1;
+  }
+  .photo span { opacity: 0.55; padding: 0 12px; text-align: center; }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .banner { height: clamp(240px, 46vw, 460px); }
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+  .gallery .photo { aspect-ratio: 3 / 4; }
+  .gallery .photo:nth-child(even) { margin-top: 36px; }
+  .thumb { width: 88px; height: 88px; border-radius: 10px; }
+
+  /* Visit */
+  .visit { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: start; margin-top: 40px; }
+  .visit h3 { font-size: 1.4rem; margin-bottom: 8px; }
+  .visit address { font-style: normal; color: var(--muted); margin-bottom: 30px; }
+  table { border-collapse: collapse; width: 100%; max-width: 340px; }
+  td { padding: 8px 0; border-bottom: 1px solid var(--sage); }
+  td:last-child { text-align: right; color: var(--muted); }
+  .map { width: 100%; height: 340px; border: 0; border-radius: 14px; background: var(--sage); }
+
+  /* Reserve */
+  .reserve { background: var(--deep); color: var(--stone); text-align: center; padding: 100px 0; }
+  .reserve h2 { color: var(--stone); }
+  .reserve p { max-width: 46ch; margin: 0 auto; opacity: 0.88; }
+  .reserve .actions { justify-content: center; }
+  .reserve .btn { border-color: var(--stone); }
+  .reserve .btn-main { background: var(--stone); color: var(--deep); }
+  .reserve .btn-main:hover { background: #fff; }
+  .reserve .btn-alt { color: var(--stone); }
+  .reserve .btn-alt:hover { background: rgba(255, 255, 255, 0.1); }
+
+  footer { padding: 34px 0 44px; color: var(--muted); font-size: 0.9rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 760px) {
+    section { padding: 64px 0; }
+    .hero { padding: 40px 0 80px; }
+    .top nav { display: none; }
+    .about, .visit { grid-template-columns: 1fr; gap: 36px; }
+    .ripples { right: -260px; opacity: 0.6; }
+    .dish { grid-template-columns: 22px 72px 1fr; }
+    .dish .price { grid-column: 3; }
+    .thumb { width: 72px; height: 72px; }
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery .photo:nth-child(even) { margin-top: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="#">Calm</a>
+    <nav aria-label="Main">
+      <a href="#about">Our approach</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Visit</a>
+      <a href="#reserve">Reserve</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="ripples" viewBox="0 0 720 720" fill="none" stroke="#b7cabd" aria-hidden="true">
+    <circle cx="360" cy="360" r="60" stroke-width="1.5"/>
+    <circle cx="360" cy="360" r="120" stroke-width="1.4"/>
+    <circle cx="360" cy="360" r="190" stroke-width="1.2"/>
+    <circle cx="360" cy="360" r="265" stroke-width="1"/>
+    <circle cx="360" cy="360" r="345" stroke-width="0.8"/>
+  </svg>
+  <div class="wrap">
+    <h1>Calm</h1>
+    <p class="tag">Nourishing food, served without hurry.</p>
+    <p class="sub">A premium restaurant in Hitech City, Hyderabad. Fresh vegetarian and non-vegetarian dishes, balanced for how you want to feel afterwards.</p>
+    <div class="actions">
+      <!-- CHANGE THE PHONE NUMBER (country code 91, no + or spaces) -->
+      <a class="btn btn-main" href="https://wa.me/919999999999?text=Hi%2C%20I%20would%20like%20to%20reserve%20a%20table%20at%20Calm">Reserve a table</a>
+      <a class="btn btn-alt" href="#menu">See the menu</a>
+    </div>
+  </div>
+</header>
+
+<!-- Banner photo: save your dining room or signature dish photo as images/hero.jpg -->
+<div class="wrap">
+  <figure class="photo banner">
+    <span>Photo of the dining room</span>
+    <img src="images/hero.jpg" alt="The dining room at Calm, Hitech City" onerror="this.style.display='none'">
+  </figure>
+</div>
+
+<main>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="soft">
+  <div class="wrap about">
+    <div>
+      <h2>Food that looks after you</h2>
+      <p>At Calm, every plate is built around whole ingredients: seasonal vegetables, lean proteins, millets, pulses and good fats. Nothing is heavy, and nothing is rushed.</p>
+      <p>Our kitchen cooks to order, with little refined sugar and sensible oil. Each dish on the menu lists its approximate calories and protein, so you can eat well without guessing.</p>
+    </div>
+    <div class="principles">
+      <div>
+        <h3>Balanced by design</h3>
+        <p>Vegetarian and non-vegetarian dishes are planned with the same care for protein, fibre and flavour.</p>
+      </div>
+      <div>
+        <h3>A quiet room</h3>
+        <p>Soft light, natural textures and generous space between tables. A place to talk, think or simply sit.</p>
+      </div>
+      <div>
+        <h3>Open from first light</h3>
+        <p>Breakfast from 5 am for early starts, and a calm table late into the night.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu">
+  <div class="wrap">
+    <h2>The menu</h2>
+    <p class="lead">A short, seasonal menu. Prices are in rupees and include no service charge.</p>
+
+    <div class="filters" role="group" aria-label="Filter the menu">
+      <button type="button" data-filter="all" aria-pressed="true">All dishes</button>
+      <button type="button" data-filter="veg" aria-pressed="false">Vegetarian</button>
+      <button type="button" data-filter="nonveg" aria-pressed="false">Non-vegetarian</button>
+    </div>
+
+    <!-- NOTE: calories and protein below are sample values. Replace them with your kitchen's real numbers. -->
+
+    <div class="group">
+      <h3>Early morning</h3>
+      <p class="when">Served 5 am to 11 am</p>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Steel-cut oats</h4><p>Almond milk, seasonal berries, chia, toasted seeds.</p><p class="nutri">About 380 kcal, 12 g protein</p></div>
+        <span class="price">₹420</span>
+      </div>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Moong chilla</h4><p>Sprouted moong crepes, mint and avocado chutney, cucumber salad.</p><p class="nutri">About 340 kcal, 18 g protein</p></div>
+        <span class="price">₹460</span>
+      </div>
+      <div class="dish" data-type="nonveg">
+        <span class="mark nonveg"><span class="sr">Non-vegetarian</span></span>
+        <div><h4>Avocado and egg on sourdough</h4><p>Poached eggs, avocado, microgreens, lemon and olive oil.</p><p class="nutri">About 450 kcal, 20 g protein</p></div>
+        <span class="price">₹560</span>
+      </div>
+      <div class="dish" data-type="nonveg">
+        <span class="mark nonveg"><span class="sr">Non-vegetarian</span></span>
+        <div><h4>Smoked salmon plate</h4><p>Soft scrambled eggs, multigrain toast, dill yoghurt, greens.</p><p class="nutri">About 510 kcal, 34 g protein</p></div>
+        <span class="price">₹890</span>
+      </div>
+    </div>
+
+    <div class="group">
+      <h3>Bowls and mains</h3>
+      <p class="when">Served all day</p>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Quinoa and roasted vegetable bowl</h4><p>Pumpkin, broccoli, chickpeas, tahini and lemon dressing.</p><p class="nutri">About 480 kcal, 18 g protein</p></div>
+        <span class="price">₹640</span>
+      </div>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Grilled paneer steak</h4><p>Herb-marinated paneer, foxtail millet, charred greens, pesto.</p><p class="nutri">About 560 kcal, 30 g protein</p></div>
+        <span class="price">₹720</span>
+      </div>
+      <div class="dish" data-type="nonveg">
+        <span class="mark nonveg"><span class="sr">Non-vegetarian</span></span>
+        <div><h4>Herb-grilled chicken</h4><p>Sweet potato mash, sautéed greens, light jus.</p><p class="nutri">About 520 kcal, 42 g protein</p></div>
+        <span class="price">₹820</span>
+      </div>
+      <div class="dish" data-type="nonveg">
+        <span class="mark nonveg"><span class="sr">Non-vegetarian</span></span>
+        <div><h4>Pan-seared sea bass</h4><p>Lemon butter, brown rice, seasonal vegetables.</p><p class="nutri">About 540 kcal, 38 g protein</p></div>
+        <span class="price">₹1,180</span>
+      </div>
+      <div class="dish" data-type="nonveg">
+        <span class="mark nonveg"><span class="sr">Non-vegetarian</span></span>
+        <div><h4>Slow-cooked lamb</h4><p>Ragi crisp, roasted root vegetables, mint and yoghurt.</p><p class="nutri">About 620 kcal, 40 g protein</p></div>
+        <span class="price">₹1,380</span>
+      </div>
+    </div>
+
+    <div class="group">
+      <h3>Small plates and sips</h3>
+      <p class="when">Served all day</p>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Beetroot hummus</h4><p>Crisp vegetable crudités, toasted seeds, flatbread.</p><p class="nutri">About 260 kcal, 9 g protein</p></div>
+        <span class="price">₹380</span>
+      </div>
+      <div class="dish" data-type="nonveg">
+        <span class="mark nonveg"><span class="sr">Non-vegetarian</span></span>
+        <div><h4>Ginger chicken broth</h4><p>A clear, slow-simmered soup with vegetables and herbs.</p><p class="nutri">About 140 kcal, 16 g protein</p></div>
+        <span class="price">₹350</span>
+      </div>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Cold-pressed green juice</h4><p>Cucumber, spinach, apple, lime, mint. No added sugar.</p><p class="nutri">About 90 kcal</p></div>
+        <span class="price">₹320</span>
+      </div>
+      <div class="dish" data-type="veg">
+        <span class="mark veg"><span class="sr">Vegetarian</span></span>
+        <div><h4>Yoghurt and fruit parfait</h4><p>Hung curd, seasonal fruit, honey, roasted almonds.</p><p class="nutri">About 280 kcal, 14 g protein</p></div>
+        <span class="price">₹340</span>
+      </div>
+    </div>
+    <p class="note">Please tell us about any allergies before ordering. Nutrition values are approximate.</p>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<!-- Save four photos as images/gallery-1.jpg to gallery-4.jpg -->
+<section id="space">
+  <div class="wrap">
+    <h2>The space and the plates</h2>
+    <p class="lead">Natural light, quiet corners and food made to be seen as well as eaten.</p>
+    <div class="gallery">
+      <figure class="photo"><span>Seating area</span><img src="images/gallery-1.jpg" alt="Seating area at Calm" loading="lazy" onerror="this.style.display='none'"></figure>
+      <figure class="photo"><span>Signature bowl</span><img src="images/gallery-2.jpg" alt="A signature bowl at Calm" loading="lazy" onerror="this.style.display='none'"></figure>
+      <figure class="photo"><span>Table setting</span><img src="images/gallery-3.jpg" alt="A table set for dinner at Calm" loading="lazy" onerror="this.style.display='none'"></figure>
+      <figure class="photo"><span>Fresh juices</span><img src="images/gallery-4.jpg" alt="Cold-pressed juices at Calm" loading="lazy" onerror="this.style.display='none'"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section id="visit" class="soft">
+  <div class="wrap">
+    <h2>Visit us</h2>
+    <p class="lead">In the heart of Hitech City, a few minutes from the main business district.</p>
+    <div class="visit">
+      <div>
+        <h3>Address</h3>
+        <!-- REPLACE with the real street address -->
+        <address>Calm, Hitech City<br>Hyderabad, Telangana</address>
+        <h3>Opening hours</h3>
+        <table>
+          <tr><td>Monday to Sunday</td><td>5:00 am to 12:00 midnight</td></tr>
+          <tr><td>Breakfast</td><td>5:00 am to 11:00 am</td></tr>
+          <tr><td>Lunch and dinner</td><td>11:00 am to 12:00 midnight</td></tr>
+        </table>
+      </div>
+      <div>
+        <!-- To change the map: open Google Maps, search your address, click Share > Embed a map, copy the src link, and paste it below -->
+        <iframe class="map" title="Map showing Hitech City, Hyderabad" loading="lazy"
+          src="https://www.google.com/maps?q=Hitech+City,+Hyderabad&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVE ============ -->
+<section id="reserve" class="reserve">
+  <div class="wrap">
+    <h2>Reserve your table</h2>
+    <p>Message us the date, time and number of guests, and we will confirm. Walk-ins are always welcome.</p>
+    <div class="actions">
+      <a class="btn btn-main" href="https://wa.me/919999999999?text=Hi%2C%20I%20would%20like%20to%20reserve%20a%20table%20at%20Calm">Reserve on WhatsApp</a>
+      <a class="btn btn-alt" href="tel:+919999999999">Call 99999 99999</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Calm. All rights reserved.</span>
+    <span>Hitech City, Hyderabad</span>
+  </div>
+</footer>
+
+<script>
+  // Dish photos: dish 1 uses images/dish-1.jpg, dish 2 uses images/dish-2.jpg, and so on (top to bottom)
+  document.querySelectorAll('.dish').forEach(function (dish, i) {
+    var name = dish.querySelector('h4').textContent;
+    var fig = document.createElement('figure');
+    fig.className = 'photo thumb';
+    var img = document.createElement('img');
+    img.src = 'images/dish-' + (i + 1) + '.jpg';
+    img.alt = name;
+    img.loading = 'lazy';
+    img.onerror = function () { img.style.display = 'none'; };
+    fig.appendChild(img);
+    dish.insertBefore(fig, dish.children[1]);
+  });
+
+  // Menu filter: shows all dishes, only vegetarian, or only non-vegetarian
+  var buttons = document.querySelectorAll('.filters button');
+  var dishes = document.querySelectorAll('.dish');
+  var groups = document.querySelectorAll('.group');
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var filter = btn.getAttribute('data-filter');
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      dishes.forEach(function (d) {
+        d.hidden = !(filter === 'all' || d.getAttribute('data-type') === filter);
+      });
+      groups.forEach(function (g) {
+        g.hidden = g.querySelectorAll('.dish:not([hidden])').length === 0;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
